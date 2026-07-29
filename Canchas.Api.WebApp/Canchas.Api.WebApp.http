@@ -1,0 +1,6 @@
+@Canchas.Api.WebApp_HostAddress = http://localhost:5277
+
+GET {{Canchas.Api.WebApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
