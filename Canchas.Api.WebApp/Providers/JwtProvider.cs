@@ -26,13 +26,25 @@ namespace Canchas.Api.WebApp.Providers
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             // 2. Definimos los Claims (La información del usuario dentro del token)
-            var claims = new[]
+            //var claims = new[]
+            //{
+            //    new Claim(JwtRegisteredClaimNames.Sub, usuario.Id.ToString()),
+            //    new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
+            //    new Claim("nombre", usuario.Nombre),
+            //    new Claim(ClaimTypes.Role, usuario.Rol), // Por ejemplo: "Admin", "DueñoCancha", "Cliente"
+            //};
+            List<Claim> claims = new List<Claim>
             {
-            new Claim(JwtRegisteredClaimNames.Sub, usuario.Id.ToString()),
-            new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
-            new Claim("nombre", usuario.Nombre),
-            new Claim(ClaimTypes.Role, usuario.Rol) // Por ejemplo: "Admin", "DueñoCancha", "Cliente"
-        };
+                new Claim(JwtRegisteredClaimNames.Sub, usuario.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
+                new Claim("nombre", usuario.Nombre),
+                new Claim(ClaimTypes.Role, usuario.Rol),
+            };
+
+            if (usuario.ClubId.HasValue)
+            {
+                claims.Add(new Claim("ClubId", usuario.ClubId.Value.ToString()));
+            }
 
             // 3. Creamos el Token
             var token = new JwtSecurityToken(
