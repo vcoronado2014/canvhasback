@@ -1,0 +1,74 @@
+# .gitignore for Visual Studio / .NET projects
+
+# Build Folders
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+*.exe
+*.dll
+*.pdb
+*.cache
+
+# NuGet
+*.nupkg
+.nuget/packages/
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+*.sln.iml
+
+# Publish output
+publish/
+wwwroot/
+
+# IIS Express
+_iisexpress/
+
+# Logs
+*.log
+logs/
+
+# Test results
+TestResults/
+coverage/
+
+# Roslyn
+*.idecache
+
+# Rider/Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# User-specific files
+*.rsuser
+*.suo
+*.userprefs
+
+# Temporary files
+*.tmp
+*.temp
+~$*
+
+# Others
+*.db
+*.sql
+
+# macOS
+.DS_Store
+
+# Node
+node_modules/
+
+# dotnet tool manifest
+.dotnet/
