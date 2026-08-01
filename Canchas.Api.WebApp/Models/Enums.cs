@@ -13,7 +13,10 @@
 
         public enum EstadoReserva
         {
-            Pendiente, Confirmada, Pagada, Cancelada
+            Pendiente = 0,   // Reservada pero aún no se paga en el club
+            Confirmada = 1,  // Confirmada / Pagada presencialmente
+            Completada = 2,  // Ya se jugó la hora
+            Cancelada = 3    // Cancelada por el usuario o administración
         }
 
         public enum RolUsuario
@@ -23,8 +26,12 @@
 
         public enum MetodoPago
         {
-            Efectivo, Transferencia, Transbank, MercadoPago, Otro
+            Efectivo = 0,
+            Debito = 1,
+            Credito = 2,
+            Transferencia = 3,
+            PresencialServicio = 4 // Pago directo en el club al llegar
         }
 
-    
+
 }
