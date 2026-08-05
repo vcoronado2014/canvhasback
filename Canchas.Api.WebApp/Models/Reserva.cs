@@ -34,5 +34,7 @@ namespace Canchas.Api.WebApp.Models
         public User CreatedByUser { get; set; } = null!;
 
         public List<PagoLog> PagoLogs { get; set; } = [];
+
+        public DateTime FechaCreacion { get; set; }
     }
 }

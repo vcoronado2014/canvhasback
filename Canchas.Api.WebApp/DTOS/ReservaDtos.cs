@@ -3,14 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Canchas.Api.WebApp.DTOS
 {
-    // DTO para consultar la oferta de canchas de un club en una fecha dada
     public class ConsultarDisponibilidadRequestDto
     {
         [Required]
         public int ClubId { get; set; }
 
         [Required]
-        public DateTime Fecha { get; set; } // Formato YYYY-MM-DD
+        public DateTime Fecha { get; set; }
     }
 
     public class SlotDisponibilidadDto
@@ -19,28 +18,55 @@ namespace Canchas.Api.WebApp.DTOS
         public DateTime FechaFin { get; set; }
         public decimal Precio { get; set; }
         public bool Disponible { get; set; }
-        public string? MotivoOcupado { get; set; } // "Reservada", "Bloqueada por mantenimiento", etc.
+        public string? MotivoOcupado { get; set; }
     }
 
     public class CanchaOfertaDto
     {
+        // Datos del Club
+        public int ClubId { get; set; }
+        public string NombreClub { get; set; } = string.Empty;
+        public string DireccionClub { get; set; } = string.Empty;
+        public string ComunaNombre { get; set; } = string.Empty;
+        public string RegionNombre { get; set; } = string.Empty;
+        public string? FotoClubUrl { get; set; }
+
+        // Datos de la Cancha
         public int CanchaId { get; set; }
         public string NombreCancha { get; set; } = string.Empty;
         public TipoCancha TipoCancha { get; set; }
         public decimal PrecioHoraBase { get; set; }
         public string? FotoPrincipalUrl { get; set; }
-        public List<SlotDisponibilidadDto> HorariosDisponibles { get; set; } = new List<SlotDisponibilidadDto>();
+        public int DuracionMinimaMinutos { get; set; }
+
+        // Slots
+        public List<SlotDisponibilidadDto> HorariosDisponibles { get; set; } = new();
     }
 
-    // DTO para crear una reserva presencial
+    // DTO que faltaba para la Reserva Online del Cliente
+    public class CrearReservaClienteDto
+    {
+        [Required]
+        public int CanchaId { get; set; }
+
+        [Required]
+        public DateTime FechaInicio { get; set; }
+
+        [Required]
+        public DateTime FechaFin { get; set; }
+
+        [Required]
+        public decimal MontoTotal { get; set; }
+
+        public MetodoPago MetodoPago { get; set; }
+    }
+
     public class CrearReservaPresencialDto
     {
         [Required]
         public int CanchaId { get; set; }
 
         public int? ClienteId { get; set; }
-
-        // Si no está registrado como Cliente formal
         public string? NombreClienteManual { get; set; }
         public string? TelefonoClienteManual { get; set; }
 
@@ -53,12 +79,10 @@ namespace Canchas.Api.WebApp.DTOS
         [Required]
         public decimal MontoTotal { get; set; }
 
-        // Si paga en el acto al reservar presencialmente o si queda en "Pendiente" para pagar al llegar
         public bool Pagado { get; set; } = false;
         public MetodoPago? MetodoPago { get; set; }
     }
 
-    // DTO de respuesta detallada de una reserva
     public class ReservaReadDto
     {
         public int Id { get; set; }
@@ -75,5 +99,19 @@ namespace Canchas.Api.WebApp.DTOS
         public DateTime? FechaPagoReal { get; set; }
         public int CreatedByUserId { get; set; }
         public string CreadoPorUsuario { get; set; } = string.Empty;
+    }
+
+    public class CrearReservaClienteLoteDto
+    {
+        public int CanchaId { get; set; }
+        public List<TramoReservaDto> Bloques { get; set; } = new();
+        public decimal MontoTotal { get; set; }
+        public MetodoPago MetodoPago { get; set; }
+    }
+
+    public class TramoReservaDto
+    {
+        public DateTime FechaInicio { get; set; }
+        public DateTime FechaFin { get; set; }
     }
 }

@@ -7,7 +7,6 @@ namespace Canchas.Api.WebApp.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
     public class LocationController : ControllerBase
     {
         private readonly AppDbContext _context;
