@@ -1,12 +1,32 @@
 ﻿namespace Canchas.Api.WebApp.Models
 {
-    
-        public enum TipoCancha
-        {
-            PadelDoble, PadelSingle, Futbolito7, Futbolito8, Tenis, Multi, Otro
-        }
 
-        public enum EstadoSuscripcionClub
+    public enum TipoCancha
+    {
+        PadelDoble = 0,
+        PadelSingle = 1,
+        Futbolito7 = 2,
+        Futbolito8 = 3,
+        Tenis = 4,
+        Multicancha = 5,
+        Otro = 6,
+
+        Futbol11 = 7,
+        FutbolitoTechado = 8,
+        Raquetbol = 9,
+        Squash = 10,
+        Hockey = 11,
+        MulticanchaTechada = 12,
+        Rugby = 13,
+        EKarting = 14,
+        TenisMesa = 15,
+        Futbol6 = 16,
+        Voleibol = 17,
+        Handball = 18,
+        Futbol9 = 19
+    }
+
+    public enum EstadoSuscripcionClub
         {
             Activo, PendientePago, Suspendido, Cancelado
         }
